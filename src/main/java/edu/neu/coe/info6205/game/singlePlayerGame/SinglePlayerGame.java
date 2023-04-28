@@ -30,7 +30,6 @@ public abstract class SinglePlayerGame<T, G> implements Game<T, G>,
 
     protected SinglePlayerGame(SPGameCreator<T, GridPosition, StateTransition<T, GridPosition>> gameCreator, boolean isBot,
                                Solver<T, UserGame<Board<T, GridPosition, StateTransition<T, GridPosition>>, T>> moveGenerator, Integer... sizeArgs) {
-        // TODO check this cast
         gameCreator.initialize(sizeArgs);
         this.board = gameCreator.getPlayerView();
         //this.refGrid = deepCopy(grid); //todo mehul need to solve

@@ -39,8 +39,7 @@ public class SudokuSolver implements Solver<Integer, UserGame<Board<Integer, Gri
     @Override
     public void solve(UserGame<Board<Integer, GridPosition, StateTransition<Integer, GridPosition>>, Integer> game) {
 
-        System.out.println("Solver display");
-        display(game.getBoard());
+       // display(game.getBoard());
 
         int n = 9;
         HashSet<Integer>[] rowArray = new HashSet[n];
@@ -50,18 +49,10 @@ public class SudokuSolver implements Solver<Integer, UserGame<Board<Integer, Gri
 
         HashSet<Pair> positionToBeFilled = new HashSet<>();
         fillSets(game.getBoard(), positionToBeFilled, rowArray, columnArray, gridArray);
-        /*System.out.println("Row array = ");
-        print(rowArray);
-        System.out.println("column array = " + columnArray);
-        print(columnArray);
-        System.out.println("grid array = " + gridArray);
-        print(gridArray);
-         */
-        game.display();
-        print(positionToBeFilled);
         Pair pair = (Pair) positionToBeFilled.toArray()[0];
         positionToBeFilled.remove(pair);
         solveRecursive(pair.getX(), pair.getY(), game, positionToBeFilled, rowArray, columnArray, gridArray);
+        System.out.println("Here finally ended");
     }
 
     private void print(HashSet<Integer>[] setArray) {
@@ -125,24 +116,18 @@ public class SudokuSolver implements Solver<Integer, UserGame<Board<Integer, Gri
 
         for (Integer value : possibleValues) {
 
-            System.out.println("hello: "+value);
-
             fillValues(i, j, value, game, positionToBeFilled, rowArray, columnArray, gridArray);
-            System.out.println("hello: 2 "+value);
             if (game.isGameOver()) {
                 System.out.println("Game is over");
                 return true;
             }
-            System.out.println("hello: 3 "+value);
             List<Pair> pairs = new ArrayList<>(positionToBeFilled);
             for (Pair pair : pairs) {
                 if (solveRecursive(pair.getX(), pair.getY(), game, positionToBeFilled, rowArray, columnArray, gridArray)) {
                     return true;
                 }
             }
-            System.out.println("hello: 4 "+value);
             removeValues(i, j, value, game, positionToBeFilled, rowArray, columnArray, gridArray);
-            System.out.println("hello: 5"+value);
         }
 
         hashSet.add(hashGrid);
@@ -226,7 +211,6 @@ public class SudokuSolver implements Solver<Integer, UserGame<Board<Integer, Gri
                     rowArray[i].add(state);
                     columnArray[j].add(state);
                 } else {
-                    System.out.println("here");
                     positionToBeFilled.add(new Pair(i, j));
                 }
             }

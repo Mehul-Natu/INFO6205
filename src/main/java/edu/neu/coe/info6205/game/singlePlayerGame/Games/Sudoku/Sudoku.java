@@ -84,7 +84,7 @@ public class Sudoku extends SinglePlayerGame<Integer, UserGame<Board<Integer, Gr
 
     @Override
     public boolean isGameOver() {
-        display();
+        //display();
         return positionsToBeFilled.size() == 0;
     }
 

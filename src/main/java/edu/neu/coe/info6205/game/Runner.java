@@ -16,22 +16,13 @@ public class Runner {
         Sudoku game = new Sudoku(
                 new SudokuCreator(), true, new SudokuSolver(3), 3);
         game.display();
-        /*System.out.println(game.getGrid().hashCode());
-        game.fillWrapper(new StateTransition<>(0, 0, 3));
-        System.out.println("after adding 3 - " + getHash(game.getGrid()));
-        game.fillWrapper(new StateTransition<>(0, 0, 4));
-        System.out.println("after adding 4 - " + getHash(game.getGrid()));
-        game.fillWrapper(new StateTransition<>(0, 0, 3));
-        System.out.println("after adding 3 - " + getHash(game.getGrid()));
-
-         */
         game.run();
         game.checkWinner();
         game.display();
         // TODO check this assignment
         Player<Integer, UserGame<Board<Integer, GridPosition, StateTransition<Integer, GridPosition>>, Integer>> winner = game.getWinner();
-        System.out.println(winner.getTotalTime());
-        System.out.println(winner.getAverageTimePerMove());
+        System.out.println(winner.getTotalTime()/Math.pow(10, 9));
+        System.out.println(winner.getAverageTimePerMove()/Math.pow(10, 9));
 
     }
 
