@@ -115,6 +115,7 @@ public class SudokuSolver implements Solver<Integer, UserGame<Board<Integer, Gri
                                   HashSet<Integer>[] columnArray, HashSet<Integer>[] gridArray) {
 
         Integer hashGrid = getHash(game.getBoard());
+
         if (hashSet.contains(hashGrid)) {
             return false;
         }
@@ -126,21 +127,24 @@ public class SudokuSolver implements Solver<Integer, UserGame<Board<Integer, Gri
 
         for (Integer value : possibleValues) {
 
-            fillValues(i, j, value, game, positionToBeFilled, rowArray, columnArray, gridArray);
+            System.out.println("hello: "+value);
 
+            fillValues(i, j, value, game, positionToBeFilled, rowArray, columnArray, gridArray);
+            System.out.println("hello: 2 "+value);
             if (game.isGameOver()) {
                 System.out.println("Game is over");
                 return true;
             }
-
+            System.out.println("hello: 3 "+value);
             List<Pair> pairs = new ArrayList<>(positionToBeFilled);
             for (Pair pair : pairs) {
                 if (solveRecursive(pair.getX(), pair.getY(), game, positionToBeFilled, rowArray, columnArray, gridArray)) {
                     return true;
                 }
             }
-
+            System.out.println("hello: 4 "+value);
             removeValues(i, j, value, game, positionToBeFilled, rowArray, columnArray, gridArray);
+            System.out.println("hello: 5"+value);
         }
 
         hashSet.add(hashGrid);

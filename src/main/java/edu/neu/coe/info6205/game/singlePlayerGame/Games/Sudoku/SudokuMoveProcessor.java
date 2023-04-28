@@ -21,7 +21,7 @@ public class SudokuMoveProcessor implements MoveProcessor<Integer, GridPosition>
 
     @Override
     public GridPosition startPosition() {
-        return null;
+        return this.gridPosition;
     }
 
     @Override
